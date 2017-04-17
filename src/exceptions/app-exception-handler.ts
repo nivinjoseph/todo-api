@@ -33,7 +33,7 @@ export class AppExceptionHandler extends ExceptionHandler
             throw new HttpException(500, "We encountered a problem while processing your request");
         }    
     }
-    
+        
     private handleTodoNotFoundException(exp: TodoNotFoundException): Promise<any>
     {
         throw new HttpException(404, "todo not found");

@@ -28,6 +28,8 @@ export class UpdateTodoController extends Controller
     
     public async execute(id: number, model: Model): Promise<any>
     {
+        this.validateModel(model);
+        
         let todo = await this._todoManager.updateTodo(id, model.title, model.description);
         
         let baseUrl = await this._configService.getBaseUrl();
