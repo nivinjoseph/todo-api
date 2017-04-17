@@ -17,8 +17,8 @@
         "x-pregit-publish": "npm run ts-build-dist && git add . && git commit -m 'preparing to publish new version'",
         "x-git-publish": "npm version patch",
         "x-postgit-publish": "git push",
-        "predebug": "npm run ts-build",
-        "debug": "nodemon --debug ./src/main.js",
+        "nodemon": "nodemon --debug ./src/main.js",
+        "debug": "npm run ts-build-watch & npm run nodemon",
         "prestart": "npm run ts-build",
         "start": "node ./src/main.js"
     },
