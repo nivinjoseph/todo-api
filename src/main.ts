@@ -5,7 +5,6 @@ import { GetTodoController } from "./controllers/queries/get-todo-controller";
 import { CreateTodoController } from "./controllers/commands/create-todo-controller";
 import { UpdateTodoController } from "./controllers/commands/update-todo-controller";
 import { DeleteTodoController } from "./controllers/commands/delete-todo-controller";
-import { AppExceptionLogger } from "./exceptions/app-exception-logger";
 import { AppExceptionHandler } from "./exceptions/app-exception-handler";
 
 const app = new WebApp(3000)
@@ -13,7 +12,6 @@ const app = new WebApp(3000)
     .registerInstaller(new AppInstaller())
     .registerControllers(GetTodosController, GetTodoController, CreateTodoController,
     UpdateTodoController, DeleteTodoController)
-    .registerExceptionLogger(AppExceptionLogger)
     .registerExceptionHandler(AppExceptionHandler);
 
 app.bootstrap();
