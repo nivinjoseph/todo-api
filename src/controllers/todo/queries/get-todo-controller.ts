@@ -1,10 +1,10 @@
 import { given } from "n-defensive";
-import { Todo } from "./../../models/todo";
-import { TodoManager } from "./../../services/todo-manager/todo-manager";
+import { Todo } from "./../../../models/todo";
+import { TodoManager } from "./../../../services/todo-manager/todo-manager";
 import { httpGet, httpRoute, Controller } from "n-web";
-import * as Routes from "./../routes";
-import { TodoNotFoundException } from "./../../exceptions/todo-not-found-exception";
-import { ConfigService } from "./../../services/config-service/config-service";
+import * as Routes from "./../../routes";
+import { TodoNotFoundException } from "./../../../exceptions/todo-not-found-exception";
+import { ConfigService } from "./../../../services/config-service/config-service";
 import { inject } from "n-ject";
 
 @httpGet

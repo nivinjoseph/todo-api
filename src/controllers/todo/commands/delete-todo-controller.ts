@@ -1,7 +1,7 @@
-import { TodoManager } from "./../../services/todo-manager/todo-manager";
+import { TodoManager } from "./../../../services/todo-manager/todo-manager";
 import { given } from "n-defensive";
 import { httpDelete, httpRoute, Controller } from "n-web";
-import * as Routes from "./../routes";
+import * as Routes from "./../../routes";
 import { inject } from "n-ject";
 
 @httpDelete
