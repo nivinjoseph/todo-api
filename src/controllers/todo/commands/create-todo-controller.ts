@@ -1,9 +1,9 @@
-import { TodoManager } from "./../../services/todo-manager/todo-manager";
+import { TodoManager } from "./../../../services/todo-manager/todo-manager";
 import { given } from "n-defensive";
-import { Todo } from "./../../models/todo";
+import { Todo } from "./../../../models/todo";
 import { httpPost, httpRoute, Controller, HttpException } from "n-web";
-import * as Routes from "./../routes";
-import { ConfigService } from "./../../services/config-service/config-service";
+import * as Routes from "./../../routes";
+import { ConfigService } from "./../../../services/config-service/config-service";
 import { inject } from "n-ject";
 import { Validator, strval } from "n-validate";
 
