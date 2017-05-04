@@ -25,7 +25,7 @@ class Installer implements ComponentInstaller
 }
 
 
-const controllers = [GetTodosController, GetTodoController, CreateTodoController, UpdateTodoController, DeleteTodoController]
+const controllers = [GetTodosController, GetTodoController, CreateTodoController, UpdateTodoController, DeleteTodoController];
 
 const app = new WebApp(ConfigurationManager.getConfig<number>("port"))
     .enableCors()
