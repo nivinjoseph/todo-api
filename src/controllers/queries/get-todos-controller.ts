@@ -1,13 +1,13 @@
 import { Todo } from "./../../models/todo";
 import { given } from "n-defensive";
 import { TodoManager } from "./../../services/todo-manager/todo-manager";
-import { httpGet, httpRoute, Controller } from "n-web";
+import { query, route, Controller } from "n-web";
 import * as Routes from "./../routes";
 import { ConfigService } from "./../../services/config-service/config-service";
 import { inject } from "n-ject";
 
-@httpGet
-@httpRoute(Routes.getTodos)
+@query
+@route(Routes.getTodos)
 @inject("TodoManager", "ConfigService")
 export class GetTodosController extends Controller
 {

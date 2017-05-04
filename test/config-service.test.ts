@@ -14,6 +14,6 @@ suite("ConfigService", () =>
     test("getBaseUrl", async () =>
     {
         let baseUrl = await configService.getBaseUrl();
-        assert.strictEqual(baseUrl, "http://localhost:3000");
+        assert.ok(!baseUrl.isEmptyOrWhiteSpace());
     });
 });

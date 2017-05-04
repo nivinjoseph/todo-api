@@ -1,16 +1,16 @@
+import { TodoManager } from "./../../services/todo-manager/todo-manager";
 import { given } from "n-defensive";
 import { Todo } from "./../../models/todo";
-import { TodoManager } from "./../../services/todo-manager/todo-manager";
-import { httpGet, httpRoute, Controller } from "n-web";
+import { command, route, Controller, HttpException } from "n-web";
 import * as Routes from "./../routes";
-import { TodoNotFoundException } from "./../../exceptions/todo-not-found-exception";
 import { ConfigService } from "./../../services/config-service/config-service";
 import { inject } from "n-ject";
+import { Validator, strval } from "n-validate";
 
-@httpGet
-@httpRoute(Routes.getTodo)  
+@command
+@route(Routes.createTodo)
 @inject("TodoManager", "ConfigService")    
-export class GetTodoController extends Controller
+export class CreateTodoController extends Controller
 {
     private readonly _todoManager: TodoManager;
     private readonly _configService: ConfigService;
@@ -26,12 +26,11 @@ export class GetTodoController extends Controller
     }
     
     
-    public async execute(id: number): Promise<any>
+    public async execute(model: Model): Promise<any>
     {
-        let todos = await this._todoManager.getTodos();
-        let todo = todos.find(t => t.id === id);
-        if (todo == null)
-            throw new TodoNotFoundException(id);
+        this.validateModel(model);   
+        
+        let todo = await this._todoManager.addTodo(model.title, model.description);
         
         let baseUrl = await this._configService.getBaseUrl();
         return {
@@ -45,4 +44,21 @@ export class GetTodoController extends Controller
             }
         };
     }
+    
+    private validateModel(model: Model): void
+    {
+        let validator = new Validator<Model>();
+        validator.for<string>("title").isRequired().useValidationRule(strval.hasMaxLength(10));
+        validator.for<string>("description").isOptional().useValidationRule(strval.hasMaxLength(100));
+        
+        validator.validate(model);
+        if (validator.hasErrors)
+            throw new HttpException(400, validator.errors);
+    }
+}
+
+interface Model
+{
+    title: string;
+    description: string;
 }

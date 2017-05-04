@@ -1,11 +1,11 @@
 import { TodoManager } from "./../../services/todo-manager/todo-manager";
 import { given } from "n-defensive";
-import { httpDelete, httpRoute, Controller } from "n-web";
+import { command, route, Controller } from "n-web";
 import * as Routes from "./../routes";
 import { inject } from "n-ject";
 
-@httpDelete
-@httpRoute(Routes.deleteTodo)   
+@command
+@route(Routes.deleteTodo)   
 @inject("TodoManager")    
 export class DeleteTodoController extends Controller
 {
